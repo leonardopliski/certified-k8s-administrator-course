@@ -52,6 +52,10 @@ Available taint effects:
 - PreferNoSchedule
 - NoExecute
 
+Remove one taint
+
+kubectl taint nodes master node-role.kubernetes.io/master:NoSchedule-
+
 ### Utils
 
 Get kube-system namespace pods
