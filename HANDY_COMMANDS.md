@@ -56,6 +56,12 @@ Remove one taint
 
 kubectl taint nodes master node-role.kubernetes.io/master:NoSchedule-
 
+### Labels
+
+Label a node with the 'size=Large'
+
+kubectl label node kind-control-plane size=Large
+
 ### Utils
 
 Get kube-system namespace pods
