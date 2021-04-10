@@ -62,6 +62,10 @@ Label a node with the 'size=Large'
 
 kubectl label node kind-control-plane size=Large
 
+Get labels of a node
+
+kubectl get node kind-control-plane --show-labels
+
 ### Utils
 
 Get kube-system namespace pods
