@@ -1,17 +1,10 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: myapp-prod
-  labels:
-    app: myapp
-    type: front-end
+  name: nginx
 
 spec:
   containers:
-    - name: nginx-container
+    - name: nginx
       image: nginx
-      resources:
-        limits:
-          memory: "128Mi"
-          cpu: "500m"
-  nodeName: node1
+  schedulerName: my-custom-scheduler
