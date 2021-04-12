@@ -66,6 +66,20 @@ Get labels of a node
 
 kubectl get node kind-control-plane --show-labels
 
+### Logging
+
+Official k8s logging & monitoring solution (Metrics Server):
+
+kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+
+Get nodes usage:
+
+kubectl top node
+
+Get internal pod logs:
+
+kubectl logs -f event-simulator-pod
+
 ### Utils
 
 Get kube-system namespace pods
