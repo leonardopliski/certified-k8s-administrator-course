@@ -80,6 +80,12 @@ Get internal pod logs:
 
 kubectl logs -f event-simulator-pod
 
+### ConfigMap
+
+Create a configmap called `app-config`:
+
+kubectl create configmap app-config --from-literal=APP_COLOR=blue -o yaml --dry-run=client > config-map.yaml
+
 ### Utils
 
 Get kube-system namespace pods

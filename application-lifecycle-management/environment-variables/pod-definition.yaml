@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp-prod
+  labels:
+    app: myapp
+    type: front-end
+
+spec:
+  containers:
+    - name: nginx-container
+      image: nginx
+      env:
+        - name: APP_COLOR
+          value: blue
