@@ -101,3 +101,25 @@ kubectl -n kube-system get pods
 Explain the pod command 'tolerations' section:
 
 kubectl explain pod --recursive | grep -A5 tolerations
+
+### Cluster Maintenance
+
+OS Upgrades:
+
+#### Drain
+
+Pods are gracefully terminated from the node that they are on and recreated on another:
+
+kubectl drain node-1
+
+#### Uncordon
+
+Enable pod scheduling on node again:
+
+kubectl uncordon node-1
+
+#### Cordon
+
+Mark the node as unschedulable:
+
+kubectl cordon node-1
