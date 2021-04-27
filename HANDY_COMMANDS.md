@@ -86,6 +86,12 @@ Create a configmap called `app-config`:
 
 kubectl create configmap app-config --from-literal=APP_COLOR=blue -o yaml --dry-run=client > config-map.yaml
 
+### Secrets
+
+Create a secret called `app-secret`:
+
+kubectl create secret generic app-secret --from-literal=DB_HOST=mysql --from-literal=DB_USER=root --from-literal=DB_PASSWORD=passwrd
+
 ### Utils
 
 Get kube-system namespace pods
