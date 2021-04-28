@@ -123,3 +123,27 @@ kubectl uncordon node-1
 Mark the node as unschedulable:
 
 kubectl cordon node-1
+
+### Cluster Upgrade Process
+
+Upgrade the kubeadm first:
+
+apt-get upgrade -y kubeadm=1.12.0-00
+
+kubeadm upgrade apply v1.12.0
+
+Upgrade kubelet:
+
+apt-get upgrade -y kubelet=1.12.0-00
+
+systemctl restart kubelet
+
+kubectl drain node-1
+
+apt-get upgrade -y kubeadm=1.12.0-00
+apt-get upgrade -y kubelet=1.12.0-00
+kubeadm upgrade node config --kubelet-version v1.12.0
+
+systemctl restart kubelet
+
+kubectl uncordon node-1
