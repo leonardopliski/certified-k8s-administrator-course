@@ -102,6 +102,53 @@ Explain the pod command 'tolerations' section:
 
 kubectl explain pod --recursive | grep -A5 tolerations
 
+### Backup and Restore
+
+#### Backup by API server:
+
+kubectl get all --all-namespaces -o=yaml > all-deploy-services.yaml
+
+Or use some kind of tool as: [Velero](https://github.com/vmware-tanzu/velero)
+
+#### Backup by ETCD Cluster:
+
+etcdctl snapshot save snapshot.db
+
+Check the status of the snapshots using:
+
+etcdctl snapshot status
+
+Restore from a snapshot:
+
+service kube-apiservcer stop
+
+etcdctl snapshot restore snapshot.db --data-dir /var/lib/etcd-from-backup
+
+systemctl daemon-reload
+
+service etcd restart
+
+service kube-api-server start
+
+Remember to add these parameters when using etcdctl:
+
+- 1. cacert -> Verify certificates of TLS-enabled secure servers.
+- 2. cert -> Identify secure client using this TLS file.
+- 3. endpoints -> default ETCD endpoint (https://127.0.0.1:2379).
+- 4. key -> Identify secure client using this TLS file.
+
+```
+etcdctl snapshot save snapshot.db \
+  --endpoints=https://127.0.0.1:2379 \
+  --cacert=/etc/etcd/ca.crt \
+  --cert=/etc/etcd/etcd-server.crt \
+  --key=/etc/etcd/etcd-server.key
+```
+
+How to change the etcdctl API version:
+
+export ETCDCTL_API=3
+
 ### Cluster Maintenance
 
 OS Upgrades:
