@@ -194,3 +194,41 @@ kubeadm upgrade node config --kubelet-version v1.12.0
 systemctl restart kubelet
 
 kubectl uncordon node-1
+
+### Certificate Creation
+
+CA:
+
+Generate keys:
+
+openssl genrsa -out ca.key 2048
+
+Certificate signing request:
+
+openssl req -new -key ca.key -subj "/CN=KUBERNETES-CA" -out ca.csr
+
+Sign certificate:
+
+openssl x509 -req -in ca.csr -signkey ca.key -out ca.crt
+
+Admin User:
+
+openssl genrsa -out admin.key 2048
+
+openssl req -new -key admin.key -subj "/CN=kube-admin" -out admin.csr
+
+openssl x509 -req -in admin.csr -CA ca.crt -CAkey ca.key -out admin.crt
+
+Api Server:
+
+openssl req -new -key apiserver.key -subj "/CN=kube-apiserver" -out apiserver.csr
+
+openssl x509 -req -in apiserver.csr -CA ca.crt -CAkey ca.key -out apiserver.crt
+
+Get API Server config:
+
+cat /etc/kubernetes/manifests/kube-apiserver.yaml
+
+Describe certificate:
+
+openssl x509 -in /etc/kubernetes/pki/apiserver.crt -text -noout
