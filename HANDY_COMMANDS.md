@@ -232,3 +232,17 @@ cat /etc/kubernetes/manifests/kube-apiserver.yaml
 Describe certificate:
 
 openssl x509 -in /etc/kubernetes/pki/apiserver.crt -text -noout
+
+### Config
+
+Get current config:
+
+kubectl get config
+
+Change the default config:
+
+vim $HOME/.kube/config
+
+Switch config context:
+
+kubectl config use-context prod-user@production
