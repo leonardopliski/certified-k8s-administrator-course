@@ -246,3 +246,13 @@ vim $HOME/.kube/config
 Switch config context:
 
 kubectl config use-context prod-user@production
+
+### Get API Resources
+
+Get namespaced resources:
+
+kubectl api-resources --namespaced=true
+
+Get non namespaced resources:
+
+kubectl api-resources --namespaced=false
