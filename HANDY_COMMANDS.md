@@ -256,3 +256,11 @@ kubectl api-resources --namespaced=true
 Get non namespaced resources:
 
 kubectl api-resources --namespaced=false
+
+### Create Docker Registry Secret
+
+kubectl create secret docker-registry regcred \
+ --docker-server=private-registry.io \
+ --docker-username=registry-user \
+ --docker-password=registry-password \
+ --docker-email=registry-user@org.com

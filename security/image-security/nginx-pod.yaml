@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod
+
+spec:
+  containers:
+    - name: nginx
+      image: private-registry.io/apps/internal-application
+  imagePullSecrets:
+    - name: regcred
