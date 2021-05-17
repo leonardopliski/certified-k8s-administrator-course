@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+
+metadata:
+  name: mypod
+
+spec:
+  containers:
+    - name: myfrontend
+      image: nginx
+      volumeMounts:
+        - mountPath: "/var/www/html"
+          name: mypod
+  volumes:
+    - name: mypod
+      persistentVolumeClaim:
+        claimName: myclaim
