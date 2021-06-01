@@ -264,3 +264,17 @@ kubectl create secret docker-registry regcred \
  --docker-username=registry-user \
  --docker-password=registry-password \
  --docker-email=registry-user@org.com
+
+### Inspect interface
+
+ip addr show weave
+
+### Inspect kubelet
+
+ps -aux | grep kubelet
+
+### Deploy Weave
+
+Apply weave components:
+
+kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
